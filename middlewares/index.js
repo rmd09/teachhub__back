@@ -8,7 +8,7 @@ const {
 } = require("./registr");
 const { signinToken, verifyToken } = require("./jwt");
 const { authTeacher } = require("./auth");
-
+const { getMe } = require("./teacher");
 
 
 module.exports = {
@@ -20,5 +20,6 @@ module.exports = {
     checkHasFieldsGreateValue,
     signinToken,
     verifyToken,
-    authTeacher
+    authTeacher,
+    getMe
 }
