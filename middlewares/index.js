@@ -6,6 +6,7 @@ const {
     createNewTeacher,
     checkHasFieldsGreateValue
 } = require("./registr");
+const { signinToken, verifyToken } = require("./jwt");
 
 
 
@@ -15,5 +16,7 @@ module.exports = {
     checkUniqueStudentUsername,
     hashPassword,
     createNewTeacher,
-    checkHasFieldsGreateValue
+    checkHasFieldsGreateValue,
+    signinToken,
+    verifyToken
 }

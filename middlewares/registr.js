@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const checkEmptyFields = (req, res, next) => {
     const username = req.body?.username;
     const password = req.body?.password;
-    console.log(req.body);
     
     if (username && password && username != "" && password != "") {
         next();
@@ -59,10 +58,12 @@ const hashPassword = async(req, res, next) => {
 
 const createNewTeacher = async(req, res, next) => {
     try {
-        await teachers.create({
+        const newTeacher = await teachers.create({
             username: req.body.username,
             password: req.body.password
         });
+        req.jwtObject = { _id: newTeacher._id.toString(), username: newTeacher.username };
+        req.userCreated = newTeacher;
         next();
     } catch (error) {
         console.log(error);
