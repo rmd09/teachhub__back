@@ -2,7 +2,7 @@ const express = require("express");
 const connect = require("./database/connection");
 const bodyParser = require("body-parser");
 
-const { auth, registr } = require("./routes/Teacher");
+const { auth, registr } = require("./routes");
 
 const api = express();
 const PORT = 3000;
@@ -11,7 +11,8 @@ connect();
 
 api.use(
     bodyParser.json(),
-    registr
+    registr,
+    auth
 );
 
 api.listen(PORT, () => {
