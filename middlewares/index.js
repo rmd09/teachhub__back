@@ -8,7 +8,7 @@ const {
 } = require("./registr");
 const { signinToken, verifyToken } = require("./jwt");
 const { authTeacher } = require("./auth");
-const { getMe } = require("./teacher");
+const { getMe, createNewStudent } = require("./teacher");
 
 
 module.exports = {
@@ -21,5 +21,6 @@ module.exports = {
     signinToken,
     verifyToken,
     authTeacher,
-    getMe
+    getMe,
+    createNewStudent
 }
