@@ -1,44 +1,14 @@
 const mongoose = require("mongoose");
-
-const usefulLinksSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    link: {
-        type: String,
-        required: true
-    }
-});
-const timetableSchema = new mongoose.Schema({
-    dayOfWeek: {
-        type: String,
-        required: true,
-        enum: [
-            "Понедельник",
-            "Вторник",
-            "Среда",
-            "Четверг",
-            "Пятница",
-            "Суббота",
-            "Воскресенье"
-        ]
-    },
-    time: {
-        type: String,
-        required: true      //ЧЧ:ММ
-    }
-})
+const { timetableSchema, usefulLinksSchema } = require("./usefulSchemas")
 
 const StudentSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true,
-        unique: true
+        required: false,
     },
     password: {
         type: String,
-        required: true
+        required: false,
     },
     name: {
         type: String,
@@ -50,18 +20,24 @@ const StudentSchema = new mongoose.Schema({
     },
     notes: {
         type: String,
-        required: true
+        required: false,
+        default: ""
     },
     isNotesPublic: {
         type: Boolean,
-        required: true
+        required: false,
+        default: false
     },
     usefulLinks: [{
         type: usefulLinksSchema
     }],
     timetable: [{
         type: timetableSchema
-    }]
+    }],
+    isRegistered: {
+        type: Boolean,
+        required: true
+    }
 });
 
 module.exports = mongoose.model("students", StudentSchema);
