@@ -7,7 +7,7 @@ const signinToken = async(req, res, next) => {
         const privateKey = await fs.readFile(path.join("keys", "jwt_rsa"), "utf8");
         const token = jwt.sign(req.jwtObject, privateKey, { 
             algorithm: "RS256", 
-            expiresIn: req.body?.needToRemember ? "24d" : "4h"
+            expiresIn: req.body?.needToRemember ? "10d" : "4h"
         });
         req.token = token;
         next();

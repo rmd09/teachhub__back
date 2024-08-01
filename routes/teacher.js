@@ -1,5 +1,5 @@
-const { sendMe } = require("../controllers");
-const { verifyToken, getMe, createNewStudent } = require("../middlewares");
+const { sendMe, sendMeAndInvitingJWT } = require("../controllers");
+const { verifyToken, getMe, createNewStudent, signinToken } = require("../middlewares");
 
 const router = require("express").Router();
 
@@ -13,7 +13,8 @@ router.put("/teacher/new_student",
     verifyToken,
     getMe,
     createNewStudent,
-    sendMe
+    signinToken,
+    sendMeAndInvitingJWT
 )
 
 module.exports = router;
