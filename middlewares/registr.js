@@ -63,6 +63,7 @@ const createNewTeacher = async(req, res, next) => {
             password: req.body.password
         });
         req.jwtObject = { _id: newTeacher._id.toString(), username: newTeacher.username };
+        newTeacher.password = "";
         req.userCreated = newTeacher;
         next();
     } catch (error) {

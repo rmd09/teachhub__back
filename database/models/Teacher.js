@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const students = require("./Student");
+const students = require("./student");
 
 const TeacherSchema = new mongoose.Schema({
     username: {
