@@ -2,7 +2,7 @@ const express = require("express");
 const connect = require("./database/connection");
 const bodyParser = require("body-parser");
 
-const { auth, registr, teacher, student } = require("./routes");
+const { teacher, student } = require("./routes");
 const cors = require("./middlewares/cors");
 
 const api = express();
@@ -13,8 +13,6 @@ connect();
 api.use(
     cors,
     bodyParser.json(),
-    registr,
-    auth,
     teacher,
     student
 );
