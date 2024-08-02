@@ -1,5 +1,5 @@
 const { sendUserCreated } = require("../controllers");
-const { checkEmptyFields, checkUniqueTeacherUsername, hashPassword, createNewTeacher, checkHasFieldsGreateValue, signinToken } = require("../middlewares");
+const { checkEmptyFields, checkUniqueTeacherUsername, hashPassword, createNewTeacher, checkHasFieldsGreateValue, signinToken, checkUniqueStudentUsername, checkInvitingJwt, verifyToken, fillUsernameAndPasswordOfStudent } = require("../middlewares");
 
 const router = require("express").Router();
 
@@ -9,6 +9,18 @@ router.post("/teacher/registr",
     checkUniqueTeacherUsername, 
     hashPassword, 
     createNewTeacher, 
+    signinToken,
+    sendUserCreated
+);
+
+router.post("/student/registr",
+    verifyToken,
+    checkInvitingJwt,
+    checkEmptyFields,
+    checkHasFieldsGreateValue,
+    checkUniqueStudentUsername,
+    hashPassword,
+    fillUsernameAndPasswordOfStudent,
     signinToken,
     sendUserCreated
 );

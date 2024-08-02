@@ -4,7 +4,8 @@ const {
     checkUniqueStudentUsername,
     hashPassword,
     createNewTeacher,
-    checkHasFieldsGreateValue
+    checkHasFieldsGreateValue,
+    fillUsernameAndPasswordOfStudent
 } = require("./registr");
 const { signinToken, verifyToken } = require("./jwt");
 const { authTeacher } = require("./auth");
@@ -24,5 +25,6 @@ module.exports = {
     authTeacher,
     getMe,
     createNewStudent,
-    checkInvitingJwt
+    checkInvitingJwt,
+    fillUsernameAndPasswordOfStudent
 }
