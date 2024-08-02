@@ -9,7 +9,7 @@ router.get("/teacher/me",
     sendMe
 );
 
-router.put("/teacher/new_student",
+router.put("/teacher/new-student",
     verifyToken,
     getMe,
     createNewStudent,
