@@ -11,6 +11,17 @@ const checkInvitingJwt = async(req, res, next) => {
     }
 }
 
+const checkPublicNotes = (req, res, next) => { //Если заметки приватные, они не должны отправляться ученику
+    if (req.user && !req.user.isNotesPublic) {
+        req.user.notes = "";
+    }
+    if (req.student && !req.user.isNotesPublic) {
+        req.student.notes = "";
+    }
+    next();
+}
+
 module.exports = {
-    checkInvitingJwt
+    checkInvitingJwt,
+    checkPublicNotes
 }
