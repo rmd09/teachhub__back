@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 const { students, teachers } = require("../database/models");
 
 const authTeacher = async(req, res, next) => {
-    const user = await teachers.findOne({ username: req.body.username }).populate("students", { password: 0 });
+    const user = await teachers.findOne({ username: req.body.username }).populate("students", { password: 0, invitingJWT: 0 });
     if (user) {
         const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password);
         if (isPasswordCorrect) {

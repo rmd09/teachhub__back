@@ -74,7 +74,12 @@ const createNewTeacher = async(req, res, next) => {
 }
 const fillUsernameAndPasswordOfStudent = async(req, res, next) => {
     try {
-        const student = await students.findByIdAndUpdate(req.student._id, { username: req.body.username, password: req.body.password, isRegistered: true });
+        const student = await students.findByIdAndUpdate(req.student._id, { username: req.body.username, 
+                                                                            password: req.body.password, 
+                                                                            isRegistered: true, 
+                                                                            invitingJWT: "" }
+        );
+        student.invitingJWT = ""; //Не успевает подгрузить изменения, поэтому делаем вручную
         req.jwtObject = { _id: student._id, username: student.username };
         req.userCreated = student;
         next();

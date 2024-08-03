@@ -37,8 +37,15 @@ const getMeStudent = async(req, res, next) => {
     }
 }
 
+const fillInvitingJWT = async(req, res, next) => {
+    const { _id } = req.jwtObject;
+    const temp = await students.findByIdAndUpdate(_id, { invitingJWT: req.token});
+    next();
+}
+
 module.exports = {
     checkInvitingJwt,
     checkPublicNotes,
-    getMeStudent
+    getMeStudent,
+    fillInvitingJWT
 }

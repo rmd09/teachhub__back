@@ -37,6 +37,10 @@ const StudentSchema = new mongoose.Schema({
     isRegistered: {
         type: Boolean,
         required: true
+    },
+    invitingJWT: {
+        type: String,
+        required: false
     }
 });
 
