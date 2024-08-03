@@ -1,5 +1,5 @@
-const { sendMeStudent, sendJWT, sendUserCreated } = require("../controllers");
-const { verifyToken, checkInvitingJwt, checkPublicNotes, checkEmptyFields, authStudent, signinToken, checkHasFieldsGreateValue, checkUniqueStudentUsername, hashPassword, fillUsernameAndPasswordOfStudent } = require("../middlewares");
+const { sendMeStudent, sendJWT, sendUserCreated, sendOK } = require("../controllers");
+const { verifyToken, checkInvitingJwt, checkPublicNotes, checkEmptyFields, authStudent, signinToken, checkHasFieldsGreateValue, checkUniqueStudentUsername, hashPassword, fillUsernameAndPasswordOfStudent, getMeStudent } = require("../middlewares");
 
 const router = require("express").Router();
 
@@ -7,7 +7,7 @@ router.get("/student/check-inviting-jwt",
     verifyToken,
     checkInvitingJwt,
     checkPublicNotes,
-    sendMeStudent
+    sendOK
 );
 
 router.post("/student/auth",
@@ -29,6 +29,13 @@ router.post("/student/registr",
     signinToken,
     checkPublicNotes,
     sendUserCreated
+);
+
+router.get("/student/me",
+    verifyToken,
+    getMeStudent,
+    checkPublicNotes,
+    sendMeStudent
 );
 
 module.exports = router;
