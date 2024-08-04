@@ -4,11 +4,13 @@ const {
     checkUniqueStudentUsername,
     hashPassword,
     createNewTeacher,
-    checkHasFieldsGreateValue
+    checkHasFieldsGreateValue,
+    fillUsernameAndPasswordOfStudent
 } = require("./registr");
 const { signinToken, verifyToken } = require("./jwt");
-const { authTeacher } = require("./auth");
-const { getMe, createNewStudent } = require("./teacher");
+const { authTeacher, authStudent } = require("./auth");
+const { getMe, createNewStudent, getNewStudentJwt } = require("./teacher");
+const { checkInvitingJwt, checkPublicNotes, getMeStudent, fillInvitingJWT } = require("./student");
 
 
 module.exports = {
@@ -22,5 +24,12 @@ module.exports = {
     verifyToken,
     authTeacher,
     getMe,
-    createNewStudent
+    createNewStudent,
+    checkInvitingJwt,
+    fillUsernameAndPasswordOfStudent,
+    authStudent,
+    checkPublicNotes,
+    getMeStudent,
+    fillInvitingJWT,
+    getNewStudentJwt
 }

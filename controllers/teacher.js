@@ -4,8 +4,12 @@ const sendMe = (req, res) => {
 const sendMeAndInvitingJWT = (req, res) => {
     res.status(200).send({ invitingJWT: req.token, user: req.teacher })
 }
+const sendInvitingJWT = (req, res) => {
+    res.status(200).send({ invitingJWT: req.invitingJWT });
+}
 
 module.exports = {
     sendMe,
-    sendMeAndInvitingJWT
+    sendMeAndInvitingJWT,
+    sendInvitingJWT
 }

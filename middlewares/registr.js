@@ -34,8 +34,9 @@ const checkUniqueTeacherUsername = async(req, res, next) => {
     
 }
 
-const checkUniqueStudentUsername = (req, res, next) => {
-    if (students.exists({ username: req.body.username })) {
+const checkUniqueStudentUsername = async(req, res, next) => {
+    const temp = await students.exists({ username: req.body.username });
+    if (temp) {
         res.status(400).send({ message: "Пользователь с таким именем уже существует" });
     }
     else {
@@ -71,6 +72,22 @@ const createNewTeacher = async(req, res, next) => {
         res.status(500).send("Internal Server Error");
     }
 }
+const fillUsernameAndPasswordOfStudent = async(req, res, next) => {
+    try {
+        const student = await students.findByIdAndUpdate(req.student._id, { username: req.body.username, 
+                                                                            password: req.body.password, 
+                                                                            isRegistered: true, 
+                                                                            invitingJWT: "" }
+        );
+        student.invitingJWT = ""; //Не успевает подгрузить изменения, поэтому делаем вручную
+        req.jwtObject = { _id: student._id, username: student.username };
+        req.userCreated = student;
+        next();
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal Server Error");
+    }
+}
 
 module.exports = {
     checkEmptyFields,
@@ -78,5 +95,6 @@ module.exports = {
     checkUniqueStudentUsername,
     hashPassword,
     createNewTeacher,
-    checkHasFieldsGreateValue
+    checkHasFieldsGreateValue,
+    fillUsernameAndPasswordOfStudent
 }

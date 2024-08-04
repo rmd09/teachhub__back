@@ -1,9 +1,13 @@
 const { sendJWT, sendUserCreated } = require("./auth-and-registr");
-const { sendMe, sendMeAndInvitingJWT } = require("./teacher");
+const { sendMeStudent, sendOK } = require("./student");
+const { sendMe, sendMeAndInvitingJWT, sendInvitingJWT } = require("./teacher");
 
 module.exports = {
     sendJWT,
     sendUserCreated,
     sendMe,
-    sendMeAndInvitingJWT
+    sendMeAndInvitingJWT,
+    sendMeStudent,
+    sendOK,
+    sendInvitingJWT
 }
