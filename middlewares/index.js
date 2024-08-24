@@ -9,7 +9,7 @@ const {
 } = require("./registr");
 const { signinToken, verifyToken } = require("./jwt");
 const { authTeacher, authStudent } = require("./auth");
-const { getMe, createNewStudent, getNewStudentJwt } = require("./teacher");
+const { getMe, createNewStudent, getNewStudentJwt, changeStudent } = require("./teacher");
 const { checkInvitingJwt, checkPublicNotes, getMeStudent, fillInvitingJWT } = require("./student");
 
 
@@ -31,5 +31,6 @@ module.exports = {
     checkPublicNotes,
     getMeStudent,
     fillInvitingJWT,
-    getNewStudentJwt
+    getNewStudentJwt,
+    changeStudent
 }

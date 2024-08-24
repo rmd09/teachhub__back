@@ -12,6 +12,25 @@ const getMe = async(req, res, next) => {
     }
 }
 
+const changeStudent = async(req, res, next) => {
+    const studentId = req.params.id;
+    const teacher = await teachers.findById(req.jwtObject._id).populate("students", { password: 0 });
+    const index = teacher.students.find((value) => {
+        return value._id == studentId;
+    });
+
+    if (index) {
+        try {
+            const updatedStudent = await students.findByIdAndUpdate(studentId, req.body);
+            next();
+        } catch {
+            res.status(400).send("Bad Request");
+        }
+    } else {
+        res.status(401).send("Unauthorized");
+    }
+}
+
 const createNewStudent = async(req, res, next) => {
     const body = req.body;
     try {
@@ -60,5 +79,6 @@ const getNewStudentJwt = async(req, res, next) => {
 module.exports = {
     getMe,
     createNewStudent,
-    getNewStudentJwt
+    getNewStudentJwt,
+    changeStudent
 }

@@ -7,9 +7,13 @@ const sendMeAndInvitingJWT = (req, res) => {
 const sendInvitingJWT = (req, res) => {
     res.status(200).send({ invitingJWT: req.invitingJWT });
 }
+const sendUpdatedStudentOK = (req, res) => {
+    res.status(200).send({ message: "Пользователь успешно изменён" });
+}
 
 module.exports = {
     sendMe,
     sendMeAndInvitingJWT,
-    sendInvitingJWT
+    sendInvitingJWT,
+    sendUpdatedStudentOK
 }
