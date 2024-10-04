@@ -15,7 +15,7 @@ const getMe = async(req, res, next) => {
 const changeStudent = async(req, res, next) => {
     const studentId = req.params.id;
     const teacher = await teachers.findById(req.jwtObject._id).populate("students", { password: 0 });
-    const index = teacher.students.find((value) => {
+    const index = teacher?.students?.find((value) => {
         return value._id == studentId;
     });
 
@@ -60,7 +60,7 @@ const createNewStudent = async(req, res, next) => {
 const getNewStudentJwt = async(req, res, next) => {
     const studentId = req.params.id;
     const teacher = await teachers.findById(req.jwtObject._id).populate("students", { password: 0 });
-    const index = teacher.students.find((value) => {
+    const index = teacher?.students?.find((value) => {
         return value._id == studentId;
     });
     if (index) {
